@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cloud Computing Lab Portal | VR23</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+            --accent: #f59e0b;
+            --bg: #f8fafc;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --white: #ffffff;
+            --border: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+
+        * { box-sizing: border-box; transition: all 0.2s ease; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header Section */
+        header {
+            text-align: center;
+            padding: 40px 0;
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            color: white;
+            border-radius: 16px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow);
+        }
+
+        header h1 { margin: 0; font-size: 2rem; letter-spacing: -0.025em; }
+        header p { opacity: 0.9; margin: 10px 0 0; font-weight: 500; }
+
+        /* Main Manual Card */
+        .manual-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .manual-text h2 { margin: 0; font-size: 1.25rem; color: var(--primary); }
+        .manual-text p { margin: 5px 0 0; color: var(--text-muted); font-size: 0.9rem; }
+
+        /* Responsive Grid for Experiments */
+        .exp-list { display: grid; gap: 20px; }
+
+        .exp-item {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .exp-summary {
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            gap: 15px;
+        }
+
+        .exp-summary:hover { background: #f1f5f9; }
+
+        .exp-info { display: flex; align-items: center; gap: 15px; flex: 1; }
+        
+        .exp-id {
+            background: var(--primary);
+            color: white;
+            min-width: 35px;
+            height: 35px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .exp-name { font-weight: 600; font-size: 1rem; color: #1e293b; }
+
+        .btn-group { display: flex; gap: 10px; }
+
+        .btn {
+            padding: 8px 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            white-space: nowrap;
+        }
+
+        .btn-outline { border: 1.5px solid var(--primary); color: var(--primary); }
+        .btn-outline:hover { background: #eff6ff; }
+        
+        .btn-solid { background: var(--primary); color: white; border: none; }
+        .btn-solid:hover { background: var(--primary-hover); }
+
+        .btn-accent { background: var(--accent); color: white; border: none; }
+        .btn-accent:hover { opacity: 0.9; }
+
+        /* Expandable Content */
+        .exp-details {
+            max-height: 0;
+            overflow: hidden;
+            background: #fafafa;
+            border-top: 0 solid var(--border);
+        }
+
+        .exp-item.open .exp-details {
+            max-height: 1500px;
+            padding: 25px;
+            border-top-width: 1px;
+        }
+
+        .content-block h4 { margin: 0 0 15px; font-size: 0.9rem; text-transform: uppercase; color: var(--primary); border-bottom: 2px solid #dbeafe; display: inline-block; }
+        .content-block p, .content-block li { font-size: 0.95rem; color: #334155; }
+        
+        code { background: #e2e8f0; padding: 2px 6px; border-radius: 4px; font-family: monospace; font-size: 0.9rem; }
+        pre { background: #1e293b; color: #f8fafc; padding: 15px; border-radius: 8px; overflow-x: auto; font-size: 0.85rem; }
+
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            .exp-summary { flex-direction: column; align-items: flex-start; }
+            .btn-group { width: 100%; justify-content: flex-start; margin-top: 10px; }
+            .manual-card { text-align: center; justify-content: center; }
+            header h1 { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>Cloud Computing Lab Portal</h1>
+        <p>III Year II Semester | Regulation: VR23 | Code: 1046233110</p>
+    </header>
+
+    <section class="manual-card">
+        <div class="manual-text">
+            <h2>Primary Lab Manual</h2>
+            <p>Official course syllabus, objectives, and evaluation criteria.</p>
+        </div>
+        <div class="btn-group">
+            <a href="VR23_CC_Lab_Manual.pdf" target="_blank" class="btn btn-outline">View Manual</a>
+            <a href="VR23_CC_Lab_Manual.pdf" download class="btn btn-accent">Download Manual</a>
+        </div>
+    </section>
+
+    <main class="exp-list" id="mainGrid">
+        </main>
+
+    <footer style="text-align: center; padding: 50px 0; color: var(--text-muted); font-size: 0.8rem;">
+        &copy; 2026 VIIT Dept of IT| Designed for Academic Use
+    </footer>
+</div>
+
+<script>
+    const experiments = [
+        {
+            id: 1,
+            name: "Virtualization using VirtualBox/VMware",
+            desc: "Installation of Linux/Windows OS as guest instances.",
+            steps: "1. Install Hypervisor (VirtualBox/VMware).\n2. Create a virtual machine instance.\n3. Configure CPU/RAM and storage.\n4. Install Guest OS via ISO file.",
+            code: "# Example: Checking virtualization support in Linux\negrep -c '(vmx|svm)' /proc/cpuinfo"
+        },
+        {
+            id: 2,
+            name: "C Compiler Setup in Virtual Environment",
+            desc: "Preparing development tools inside a VM.",
+            steps: "1. Update repositories: sudo apt update.\n2. Install build-essential package.\n3. Verify GCC version.\n4. Compile and run test program.",
+            code: "sudo apt install build-essential\ngcc --version\ngcc hello.c -o hello && ./hello"
+        },
+        {
+            id: 3,
+            name: "Amazon EC2 Web Server Setup",
+            desc: "Deploying a live instance on AWS Public Cloud.",
+            steps: "1. Launch an EC2 instance (Amazon Linux).\n2. Configure Security Group (Port 80/22).\n3. Install Apache Web Server.\n4. Verify site via Public IP.",
+            code: "sudo yum install httpd -y\nsudo systemctl start httpd\nsudo systemctl enable httpd"
+        },
+        {
+            id: 4,
+            name: "Google App Engine Deployment",
+            desc: "PaaS implementation for web applications.",
+            steps: "1. Setup Google Cloud SDK.\n2. Create app.yaml configuration.\n3. Deploy app using gcloud CLI.\n4. Access via GAE URL.",
+            code: "runtime: python39\ngcloud app deploy"
+        },
+        {
+            id: 5,
+            name: "CloudSim: Simulation & Scheduling",
+            desc: "Simulating Cloud infrastructure and algorithms.",
+            steps: "1. Setup CloudSim framework in IDE.\n2. Define DataCenters and Brokers.\n3. Assign Cloudlets to VMs.\n4. Analyze scheduling performance.",
+            code: "// Java Snippet\nCloudSim.init(num_user, calendar, trace_flag);"
+        },
+        {
+            id: 6,
+            name: "Inter-VM File Transfer",
+            desc: "Network communication between guest VMs.",
+            steps: "1. Configure Bridged Networking.\n2. Use SCP (Secure Copy) protocol.\n3. Transfer data between specific directories.\n4. Verify file permissions.",
+            code: "scp myfile.txt user@192.168.1.10:/home/user/"
+        },
+        {
+            id: 7,
+            name: "Bash Scripting & Automation",
+            desc: "Automating cloud-ready administrative tasks.",
+            steps: "1. Create .sh script file.\n2. Write directory listing and message logic.\n3. Grant execution rights (chmod +x).\n4. Execute and verify logs.",
+            code: "#!/bin/bash\necho 'Hello Cloud User'\nls -altR"
+        },
+        {
+            id: 8,
+            name: "AWS IAM: User & Role Management",
+            desc: "Identity and Access Management for security.",
+            steps: "1. Access IAM Console.\n2. Create Users and User Groups.\n3. Attach Permission Policies.\n4. Create Roles for EC2 service.",
+            code: "aws iam create-user --user-name LabUser"
+        },
+        {
+            id: 9,
+            name: "Amazon RDS Instance Management",
+            desc: "Database as a Service (DBaaS) setup.",
+            steps: "1. Create RDS Instance (MySQL/Postgres).\n2. Set DB accessibility rules.\n3. Connect via DB client tool.\n4. Perform basic CRUD operations.",
+            code: "mysql -h endpoint_url -u admin -p"
+        },
+        {
+            id: 10,
+            name: "Amazon EBS Persistent Storage",
+            desc: "Managing block storage for EC2 instances.",
+            steps: "1. Create EBS Volume in AWS.\n2. Attach Volume to EC2.\n3. Mount Volume to a Linux directory.\n4. Test data persistence across reboots.",
+            code: "lsblk\nsudo mkfs -t xfs /dev/xvdf\nsudo mount /dev/xvdf /data"
+        }
+    ];
+
+    const mainGrid = document.getElementById('mainGrid');
+
+    experiments.forEach(exp => {
+        const item = document.createElement('div');
+        item.className = 'exp-item';
+        item.innerHTML = `
+            <div class="exp-summary" onclick="toggleExp(this)">
+                <div class="exp-info">
+                    <div class="exp-id">${exp.id}</div>
+                    <div class="exp-name">${exp.name}</div>
+                </div>
+                <div class="btn-group" onclick="event.stopPropagation()">
+                    <a href="Exp_${exp.id}.pdf" target="_blank" class="btn btn-outline">View</a>
+                    <a href="Exp_${exp.id}.pdf" download class="btn btn-solid">Download</a>
+                </div>
+            </div>
+            <div class="exp-details">
+                <div class="content-block">
+                    <h4>Overview</h4>
+                    <p>${exp.desc}</p>
+                    <h4>Practical Steps</h4>
+                    <ol>
+                        ${exp.steps.split('\n').map(s => `<li>${s.replace(/^\d+\.\s*/, '')}</li>`).join('')}
+                    </ol>
+                    <h4>Quick Commands / Reference</h4>
+                    <pre>${exp.code}</pre>
+                </div>
+            </div>
+        `;
+        mainGrid.appendChild(item);
+    });
+
+    function toggleExp(el) {
+        const parent = el.closest('.exp-item');
+        const isOpen = parent.classList.contains('open');
+        
+        // Close all others
+        document.querySelectorAll('.exp-item').forEach(item => item.classList.remove('open'));
+        
+        // Open current if it was closed
+        if (!isOpen) parent.classList.add('open');
+    }
+</script>
+
+</body>
+</html>
